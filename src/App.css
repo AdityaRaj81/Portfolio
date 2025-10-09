@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+.app {
+  @apply flex min-h-screen;
+}
+
+.main-content {
+  @apply flex-1 ml-[280px] bg-transparent overflow-y-auto relative;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .main-content {
+    @apply ml-0 pb-20;
+  }
+}
