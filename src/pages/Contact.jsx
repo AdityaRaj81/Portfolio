@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Mail, MapPin, Phone, Send, Download, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Download, Github, Linkedin, Twitter, Instagram, Facebook, MessageCircle, Users } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
+    subject: '',
     message: ''
   });
 
@@ -27,6 +29,16 @@ const Contact = () => {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!/^[\+]?[1-9][\d]{0,15}$/.test(formData.phone.replace(/[\s\-\(\)]/g, ''))) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+
+    if (!formData.subject.trim()) {
+      newErrors.subject = 'Please tell me what\'s on your mind';
     }
 
     if (!formData.message.trim()) {
@@ -58,7 +70,7 @@ const Contact = () => {
 
     setTimeout(() => {
       setFormStatus({ loading: false, success: true, error: '' });
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
 
       setTimeout(() => {
         setFormStatus({ loading: false, success: false, error: '' });
@@ -67,28 +79,33 @@ const Contact = () => {
   };
 
   const handleDownloadResume = () => {
-    console.log('Resume download initiated');
+    const link = document.createElement('a');
+    link.href = '/Aditya_resume.pdf';
+    link.download = 'Aditya_Raj_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const contactInfo = [
     {
       icon: <Mail size={24} />,
       label: 'Email',
-      value: 'aditya.dev@email.com',
-      link: 'mailto:aditya.dev@email.com',
+      value: 'Connect2RajAditya@gmail.com',
+      link: 'mailto:Connect2RajAditya@gmail.com',
       gradient: 'from-primary-500 to-purple-600'
     },
     {
       icon: <Phone size={24} />,
       label: 'Phone',
-      value: '+91 98765 43210',
-      link: 'tel:+919876543210',
+      value: '+91 86510 65233',
+      link: 'tel:+918651065233',
       gradient: 'from-accent-cyan to-blue-500'
     },
     {
       icon: <MapPin size={24} />,
       label: 'Location',
-      value: 'Bangalore, India',
+      value: 'Patna, Bihar, India',
       link: null,
       gradient: 'from-accent-green to-emerald-500'
     }
@@ -98,17 +115,37 @@ const Contact = () => {
     {
       icon: <Github size={24} />,
       label: 'GitHub',
-      link: 'https://github.com/aditya'
+      link: 'https://github.com/adityaraj81'
     },
     {
       icon: <Linkedin size={24} />,
       label: 'LinkedIn',
-      link: 'https://linkedin.com/in/aditya'
+      link: 'https://linkedin.com/in/adityaraj81'
     },
     {
+      icon: <Instagram size={24} />,
+      label: 'Instagram',
+      link: 'https://instagram.com/adityaraj_81'
+    },
+    {
+      icon: <Facebook size={24} />,
+      label: 'Facebook',
+      link: 'https://facebook.com/aditya'
+    },
+    { 
       icon: <Twitter size={24} />,
       label: 'Twitter',
-      link: 'https://twitter.com/aditya'
+      link: 'https://twitter.com/adityaraj_81'
+    },
+    {
+      icon: <MessageCircle size={24} />,
+      label: 'WhatsApp',
+      link: 'https://wa.me/918651065233'
+    },
+    {
+      icon: <Users size={24} />,
+      label: 'Telegram',
+      link: 'https://t.me/Unknown0User0'
     }
   ];
 
@@ -124,26 +161,52 @@ const Contact = () => {
       </div>
 
       {/* Main Content */}
-      <div className="min-h-screen p-4 lg:p-8 space-y-8 lg:space-y-12 pt-20 lg:pt-0">
+      <div className="min-h-screen p-4 lg:p-8 space-y-8 lg:space-y-12 pt-24 lg:pt-16">
         {/* Header */}
-      <div className="text-center space-y-4">
-        <h1 className="text-3xl lg:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-          Get In Touch
-        </h1>
-        <p className="text-text-muted text-sm lg:text-lg max-w-2xl mx-auto">
-          Have a project in mind or just want to say hi? Feel free to reach out!
-        </p>
+      <div className="text-center space-y-6 mt-8 lg:mt-12 pb-8 lg:pb-12">
+        <div className="space-y-4">
+          <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent leading-tight">
+            Let's Work Together
+          </h1>
+          <p className="text-text-muted text-base lg:text-xl max-w-3xl mx-auto leading-relaxed">
+            Ready to bring your ideas to life? Whether you have a project in mind, need consultation, 
+            or just want to connect, I'm here to help turn your vision into reality.
+          </p>
+        </div>
+        
+        {/* Quick Stats */}
+        <div className="flex justify-center items-center gap-8 lg:gap-12 pt-4">
+          <div className="text-center">
+            <div className="text-2xl lg:text-3xl font-bold text-accent-cyan">24h</div>
+            <div className="text-text-muted text-xs lg:text-sm">Response Time</div>
+          </div>
+          <div className="w-px h-8 bg-primary-500/30"></div>
+          <div className="text-center">
+            <div className="text-2xl lg:text-3xl font-bold text-accent-green">15+</div>
+            <div className="text-text-muted text-xs lg:text-sm">Projects Done</div>
+          </div>
+          <div className="w-px h-8 bg-primary-500/30"></div>
+          <div className="text-center">
+            <div className="text-2xl lg:text-3xl font-bold text-primary-400">100%</div>
+            <div className="text-text-muted text-xs lg:text-sm">Satisfaction</div>
+          </div>
+        </div>
       </div>
 
       {/* Contact Content */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
         {/* Contact Form */}
-        <div className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-primary-500/30">
+        <div className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-primary-500/30 hover:border-accent-cyan/50 transition-all duration-300">
+          <div className="mb-6">
+            <h2 className="text-xl lg:text-2xl font-bold text-text-white mb-2">Send me a message</h2>
+            <p className="text-text-muted text-sm lg:text-base">I'd love to hear from you. Fill out the form below and I'll get back to you soon!</p>
+          </div>
+          
           <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6">
             {/* Name Field */}
             <div className="space-y-1 lg:space-y-2">
               <label htmlFor="name" className="block text-text-white font-medium text-sm lg:text-base">
-                Name
+                Full Name *
               </label>
               <input
                 type="text"
@@ -156,7 +219,7 @@ const Contact = () => {
                     ? 'border-red-500 focus:ring-red-500/50' 
                     : 'border-primary-500/30 focus:border-accent-cyan focus:ring-accent-cyan/50'
                 }`}
-                placeholder="Your name"
+                placeholder="Raj Kumar"
               />
               {errors.name && (
                 <span className="text-red-400 text-xs lg:text-sm">{errors.name}</span>
@@ -166,7 +229,7 @@ const Contact = () => {
             {/* Email Field */}
             <div className="space-y-1 lg:space-y-2">
               <label htmlFor="email" className="block text-text-white font-medium text-sm lg:text-base">
-                Email
+                Email Address *
               </label>
               <input
                 type="email"
@@ -179,17 +242,63 @@ const Contact = () => {
                     ? 'border-red-500 focus:ring-red-500/50' 
                     : 'border-primary-500/30 focus:border-accent-cyan focus:ring-accent-cyan/50'
                 }`}
-                placeholder="your.email@example.com"
+                placeholder="raj.kumar@gmail.com"
               />
               {errors.email && (
                 <span className="text-red-400 text-xs lg:text-sm">{errors.email}</span>
               )}
             </div>
 
+            {/* Phone Field */}
+            <div className="space-y-1 lg:space-y-2">
+              <label htmlFor="phone" className="block text-text-white font-medium text-sm lg:text-base">
+                Phone Number *
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className={`w-full px-3 lg:px-4 py-2 lg:py-3 bg-bg-primary/50 border rounded-lg lg:rounded-xl text-text-white placeholder-text-muted focus:outline-none focus:ring-2 transition-all duration-300 text-sm lg:text-base ${
+                  errors.phone 
+                    ? 'border-red-500 focus:ring-red-500/50' 
+                    : 'border-primary-500/30 focus:border-accent-cyan focus:ring-accent-cyan/50'
+                }`}
+                placeholder="+91 98765 43210"
+              />
+              {errors.phone && (
+                <span className="text-red-400 text-xs lg:text-sm">{errors.phone}</span>
+              )}
+            </div>
+
+            {/* Subject Field */}
+            <div className="space-y-1 lg:space-y-2">
+              <label htmlFor="subject" className="block text-text-white font-medium text-sm lg:text-base">
+                What's on your mind? *
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                className={`w-full px-3 lg:px-4 py-2 lg:py-3 bg-bg-primary/50 border rounded-lg lg:rounded-xl text-text-white placeholder-text-muted focus:outline-none focus:ring-2 transition-all duration-300 text-sm lg:text-base ${
+                  errors.subject 
+                    ? 'border-red-500 focus:ring-red-500/50' 
+                    : 'border-primary-500/30 focus:border-accent-cyan focus:ring-accent-cyan/50'
+                }`}
+                placeholder="I need help with my business website..."
+              />
+              {errors.subject && (
+                <span className="text-red-400 text-xs lg:text-sm">{errors.subject}</span>
+              )}
+            </div>
+
             {/* Message Field */}
             <div className="space-y-1 lg:space-y-2">
               <label htmlFor="message" className="block text-text-white font-medium text-sm lg:text-base">
-                Message
+                Message *
               </label>
               <textarea
                 id="message"
@@ -201,7 +310,7 @@ const Contact = () => {
                     ? 'border-red-500 focus:ring-red-500/50' 
                     : 'border-primary-500/30 focus:border-accent-cyan focus:ring-accent-cyan/50'
                 }`}
-                placeholder="Your message here..."
+                placeholder="Namaste! I would like to discuss about my business website. Looking forward to working with you..."
                 rows="5"
               ></textarea>
               {errors.message && (
@@ -239,15 +348,48 @@ const Contact = () => {
 
         {/* Contact Info */}
         <div className="space-y-6 lg:space-y-8">
+          {/* Why Choose Me Section with Resume Download */}
+          <div className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-primary-500/30">
+            <h3 className="text-lg lg:text-xl font-semibold text-text-white mb-4">Why Work With Me?</h3>
+            <div className="space-y-3 mb-6">
+              <div className="flex items-center gap-3 text-sm lg:text-base">
+                <div className="w-2 h-2 bg-accent-cyan rounded-full"></div>
+                <span className="text-text-muted">Fast turnaround & reliable delivery</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm lg:text-base">
+                <div className="w-2 h-2 bg-accent-green rounded-full"></div>
+                <span className="text-text-muted">Modern tech stack & best practices</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm lg:text-base">
+                <div className="w-2 h-2 bg-primary-400 rounded-full"></div>
+                <span className="text-text-muted">Clear communication throughout</span>
+              </div>
+            </div>
+            
+            {/* Download Resume Button */}
+            <div className="border-t border-primary-500/20 pt-4">
+              <p className="text-xs lg:text-sm text-text-muted text-center mb-3">
+                Want to know more about my experience?
+              </p>
+              <button 
+                className="btn-primary text-sm lg:text-base w-full hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-2"
+                onClick={handleDownloadResume}
+              >
+                <Download size={16} className="lg:w-5 lg:h-5" />
+                Download Resume
+              </button>
+            </div>
+          </div>
+
           {/* Info Cards */}
           <div className="space-y-3 lg:space-y-4">
             {contactInfo.map((info, index) => (
               <div 
                 key={index} 
-                className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-primary-500/30 hover:border-accent-cyan transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,242,254,0.2)] group"
+                className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-primary-500/30 hover:border-accent-cyan/60 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,242,254,0.15)] group"
               >
                 <div className="flex items-center gap-3 lg:gap-4">
-                  <div className={`w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl bg-gradient-to-br ${info.gradient} flex items-center justify-center text-text-white shadow-lg flex-shrink-0`}>
+                  <div className={`w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl bg-gradient-to-br ${info.gradient} flex items-center justify-center text-text-white shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                     <div className="scale-75 lg:scale-100">
                       {info.icon}
                     </div>
@@ -257,7 +399,7 @@ const Contact = () => {
                     {info.link ? (
                       <a 
                         href={info.link} 
-                        className="text-text-muted hover:text-accent-cyan transition-colors duration-300 text-sm lg:text-base break-all"
+                        className="text-text-muted hover:text-accent-cyan transition-colors duration-300 text-sm lg:text-base break-all group-hover:text-accent-cyan"
                       >
                         {info.value}
                       </a>
@@ -272,33 +414,30 @@ const Contact = () => {
 
           {/* Social Links */}
           <div className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-primary-500/30 space-y-3 lg:space-y-4">
-            <h3 className="text-lg lg:text-xl font-semibold text-text-white">Connect With Me</h3>
-            <div className="flex gap-3 lg:gap-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg lg:text-xl font-semibold text-text-white">Let's Connect</h3>
+              <div className="text-xs lg:text-sm text-text-muted">Follow for updates</div>
+            </div>
+            <div className="grid grid-cols-4 lg:grid-cols-7 gap-3">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 lg:w-12 lg:h-12 bg-text-white/10 backdrop-blur-sm rounded-lg lg:rounded-xl flex items-center justify-center text-text-white hover:bg-primary-500 hover:scale-110 transition-all duration-300 hover:shadow-[0_5px_20px_rgba(102,126,234,0.4)]"
+                  className="w-10 h-10 lg:w-12 lg:h-12 bg-text-white/10 backdrop-blur-sm rounded-lg lg:rounded-xl flex items-center justify-center text-text-white hover:bg-primary-500 hover:scale-110 transition-all duration-300 hover:shadow-[0_5px_20px_rgba(102,126,234,0.4)] group"
                   aria-label={social.label}
                 >
-                  <div className="scale-75 lg:scale-100">
+                  <div className="scale-75 lg:scale-100 group-hover:rotate-12 transition-transform duration-300">
                     {social.icon}
                   </div>
                 </a>
               ))}
             </div>
+            <p className="text-xs lg:text-sm text-text-muted text-center">
+              Drop a follow and stay updated with my latest projects and tech insights!
+            </p>
           </div>
-
-          {/* Download Resume */}
-          <button 
-            className="w-full btn-primary text-sm lg:text-base"
-            onClick={handleDownloadResume}
-          >
-            <Download size={16} className="lg:w-5 lg:h-5" />
-            Download Resume
-          </button>
         </div>
       </div>
       </div>
