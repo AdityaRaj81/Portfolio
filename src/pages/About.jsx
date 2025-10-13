@@ -90,8 +90,6 @@ const About = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
-    console.log('Resume download initiated');
   };
 
   return (
