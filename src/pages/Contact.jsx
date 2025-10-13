@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Mail, MapPin, Phone, Send, Download, Github, Linkedin, Twitter, Instagram, Facebook, MessageCircle, Users } from 'lucide-react';
 
 const Contact = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -79,13 +81,8 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        setFormStatus({ loading: false, success: true, error: '' });
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-
-        // Auto-hide success message after 5 seconds
-        setTimeout(() => {
-          setFormStatus({ loading: false, success: false, error: '' });
-        }, 5000);
+        // Redirect to thank you page
+        navigate('/thank-you');
       } else {
         throw new Error('Form submission failed');
       }
