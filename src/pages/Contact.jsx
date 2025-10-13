@@ -68,14 +68,34 @@ const Contact = () => {
 
     setFormStatus({ loading: true, success: false, error: '' });
 
-    setTimeout(() => {
-      setFormStatus({ loading: false, success: true, error: '' });
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    try {
+      const form = e.target;
+      const formDataToSend = new FormData(form);
 
-      setTimeout(() => {
-        setFormStatus({ loading: false, success: false, error: '' });
-      }, 5000);
-    }, 2000);
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formDataToSend).toString()
+      });
+
+      if (response.ok) {
+        setFormStatus({ loading: false, success: true, error: '' });
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => {
+          setFormStatus({ loading: false, success: false, error: '' });
+        }, 5000);
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      setFormStatus({ 
+        loading: false, 
+        success: false, 
+        error: 'Failed to send message. Please try again or contact me directly via email.' 
+      });
+    }
   };
 
   const handleDownloadResume = () => {
@@ -202,7 +222,24 @@ const Contact = () => {
             <p className="text-text-muted text-sm lg:text-base">I'd love to hear from you. Fill out the form below and I'll get back to you soon!</p>
           </div>
           
-          <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6">
+          <form 
+            name="contact" 
+            method="POST" 
+            data-netlify="true" 
+            data-netlify-honeypot="bot-field"
+            onSubmit={handleSubmit} 
+            className="space-y-4 lg:space-y-6"
+          >
+            {/* Hidden fields for Netlify */}
+            <input type="hidden" name="form-name" value="contact" />
+            
+            {/* Honeypot for spam protection */}
+            <div style={{ display: 'none' }}>
+              <label>
+                Don't fill this out if you're human: <input name="bot-field" />
+              </label>
+            </div>
+
             {/* Name Field */}
             <div className="space-y-1 lg:space-y-2">
               <label htmlFor="name" className="block text-text-white font-medium text-sm lg:text-base">
@@ -340,7 +377,14 @@ const Contact = () => {
             {/* Success Message */}
             {formStatus.success && (
               <div className="bg-accent-green/20 border border-accent-green/30 rounded-lg lg:rounded-xl p-3 lg:p-4 text-accent-green text-center text-sm lg:text-base">
-                Message sent successfully! I'll get back to you soon.
+                ✅ Message sent successfully! I'll get back to you soon.
+              </div>
+            )}
+
+            {/* Error Message */}
+            {formStatus.error && (
+              <div className="bg-red-500/20 border border-red-500/30 rounded-lg lg:rounded-xl p-3 lg:p-4 text-red-400 text-center text-sm lg:text-base">
+                ❌ {formStatus.error}
               </div>
             )}
           </form>
