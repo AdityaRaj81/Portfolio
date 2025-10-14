@@ -1,0 +1,57 @@
+# Netlify configuration for security and routing
+# This file configures security headers and redirects for your portfolio
+
+# Security Headers - CRITICAL for protection against common web vulnerabilities
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevent clickjacking attacks
+    X-Frame-Options = "DENY"
+    
+    # Prevent MIME type sniffing
+    X-Content-Type-Options = "nosniff"
+    
+    # Enable XSS protection
+    X-XSS-Protection = "1; mode=block"
+    
+    # Control referrer information
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Control browser features and APIs
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+    
+    # Content Security Policy - Critical security layer
+    # Adjust these as needed for your specific requirements
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval';
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' https: data: blob:;
+      connect-src 'self';
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self';
+    """
+
+# SPA Redirect - Ensures React Router works properly
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+  
+# Custom 404 page handling
+[[redirects]]
+  from = "/404"
+  to = "/index.html"
+  status = 200
+
+# Build settings (optional)
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# Environment variables (if needed)
+# [build.environment]
+#   NODE_VERSION = "18"
