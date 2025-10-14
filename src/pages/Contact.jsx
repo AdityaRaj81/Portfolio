@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, MapPin, Phone, Send, Download, Github, Linkedin, Twitter, Instagram, Facebook, MessageCircle, Users } from 'lucide-react';
+import { sanitizeInput, sanitizeEmail, sanitizePhone } from '../utils/sanitize';
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -19,34 +20,55 @@ const Contact = () => {
   });
 
   const [errors, setErrors] = useState({});
+  
+  // Rate limiting states
+  const [submissionCount, setSubmissionCount] = useState(0);
+  const [lastSubmission, setLastSubmission] = useState(null);
 
   const validateForm = () => {
     const newErrors = {};
 
+    // Name validation
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    } else if (formData.name.trim().length > 100) {
+      newErrors.name = 'Name is too long';
     }
 
+    // Email validation - Improved regex
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
     }
 
+    // Phone validation - Improved
+    const phoneDigits = formData.phone.replace(/[^\d]/g, '');
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
-    } else if (!/^[\+]?[1-9][\d]{0,15}$/.test(formData.phone.replace(/[\s\-\(\)]/g, ''))) {
-      newErrors.phone = 'Please enter a valid phone number';
+    } else if (phoneDigits.length < 10) {
+      newErrors.phone = 'Phone number must be at least 10 digits';
+    } else if (phoneDigits.length > 15) {
+      newErrors.phone = 'Phone number is too long';
     }
 
+    // Subject validation
     if (!formData.subject.trim()) {
       newErrors.subject = 'Please tell me what\'s on your mind';
+    } else if (formData.subject.trim().length < 3) {
+      newErrors.subject = 'Subject must be at least 3 characters';
     }
 
+    // Message validation
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
     } else if (formData.message.trim().length < 10) {
       newErrors.message = 'Message must be at least 10 characters';
+    } else if (formData.message.trim().length > 5000) {
+      newErrors.message = 'Message is too long (max 5000 characters)';
     }
 
     setErrors(newErrors);
@@ -55,7 +77,20 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    let sanitizedValue = value;
+    
+    // Sanitize based on field type for security
+    if (name === 'email') {
+      sanitizedValue = sanitizeEmail(value);
+    } else if (name === 'phone') {
+      sanitizedValue = sanitizePhone(value);
+    } else {
+      sanitizedValue = sanitizeInput(value);
+    }
+    
+    setFormData(prev => ({ ...prev, [name]: sanitizedValue }));
+    
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -63,6 +98,33 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check honeypot for bot detection (CRITICAL SECURITY)
+    const honeypot = e.target.elements['bot-field'];
+    if (honeypot && honeypot.value !== '') {
+      console.log('Bot detected - submission blocked');
+      return; // Silent fail for bots
+    }
+
+    // Rate limiting (CRITICAL SECURITY)
+    const now = Date.now();
+    if (lastSubmission && (now - lastSubmission) < 5000) {
+      setFormStatus({ 
+        loading: false, 
+        success: false, 
+        error: 'Please wait a few seconds before sending another message.' 
+      });
+      return;
+    }
+
+    if (submissionCount >= 3) {
+      setFormStatus({ 
+        loading: false, 
+        success: false, 
+        error: 'Too many submissions. Please try again later or email me directly at Connect2RajAditya@gmail.com' 
+      });
+      return;
+    }
 
     if (!validateForm()) {
       return;
@@ -81,6 +143,10 @@ const Contact = () => {
       });
 
       if (response.ok) {
+        // Update rate limiting counters
+        setSubmissionCount(prev => prev + 1);
+        setLastSubmission(now);
+        
         // Redirect to thank you page
         navigate('/thank-you');
       } else {
@@ -90,7 +156,7 @@ const Contact = () => {
       setFormStatus({ 
         loading: false, 
         success: false, 
-        error: 'Failed to send message. Please try again or contact me directly via email.' 
+        error: 'Failed to send message. Please try again or contact me directly via email at Connect2RajAditya@gmail.com' 
       });
     }
   };
