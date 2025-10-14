@@ -3,6 +3,7 @@ import { Download, Code, User, Eye, ExternalLink, Mail, Github, Trophy } from 'l
 
 const About = () => {
   const [hoveredSkill, setHoveredSkill] = useState(null);
+  const [imageError, setImageError] = useState(false);
   
   const skills = {
     'Programming & Languages': [
@@ -114,28 +115,31 @@ const About = () => {
           {/* Profile Card */}
           <div className="bg-bg-secondary/80 backdrop-blur-md rounded-2xl lg:rounded-3xl p-4 lg:p-6 border border-border-primary max-w-xs lg:max-w-md mx-auto hover:border-primary-500 transition-all duration-300 hover:shadow-glow group animate-float">
             <div className="aspect-square bg-bg-tertiary rounded-lg overflow-hidden border-2 border-accent-cyan/30 group-hover:border-accent-cyan transition-all duration-300 relative">
-              <img 
-                src="/profile.png" 
-                alt="Aditya Raj - Software Engineer" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                onError={(e) => {
-                  // Fallback if image doesn't load
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'flex';
-                }}
-              />
-              {/* Fallback content */}
-              <div className="w-full h-full flex items-center justify-center text-text-muted" style={{display: 'none'}}>
-                <div className="text-center">
-                  <div className="text-4xl lg:text-6xl mb-2 lg:mb-4 group-hover:scale-110 transition-transform duration-300">👨‍💻</div>
-                  <p className="font-fira text-xs lg:text-sm">Aditya Raj</p>
-                  <p className="font-fira text-xs text-text-muted mt-1 lg:mt-2">Software Engineer</p>
+              {!imageError ? (
+                <img 
+                  src="/profile.png" 
+                  alt="Aditya Raj - Software Engineer" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  loading="lazy"
+                  decoding="async"
+                  onError={() => setImageError(true)}
+                />
+              ) : (
+                // Fallback content if image fails to load
+                <div className="w-full h-full flex items-center justify-center text-text-muted bg-bg-tertiary">
+                  <div className="text-center">
+                    <div className="text-4xl lg:text-6xl mb-2 lg:mb-4 group-hover:scale-110 transition-transform duration-300">👨‍💻</div>
+                    <p className="font-fira text-xs lg:text-sm text-text-primary">Aditya Raj</p>
+                    <p className="font-fira text-xs text-text-muted mt-1 lg:mt-2">Software Engineer</p>
+                  </div>
                 </div>
-              </div>
+              )}
               {/* Shimmer effect overlay */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
-              </div>
+              {!imageError && (
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -307,7 +311,15 @@ const About = () => {
               </button>
               <button 
                 className="inline-flex items-center gap-2 border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:-translate-y-1"
-                onClick={() => window.open('https://github.com/AdityaRaj81', '_blank')}
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = 'https://github.com/AdityaRaj81';
+                  link.target = '_blank';
+                  link.rel = 'noopener noreferrer';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
               >
                 <Github size={18} />
                 View GitHub
