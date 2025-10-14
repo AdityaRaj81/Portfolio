@@ -31,6 +31,7 @@ const Sidebar = () => {
           <nav className="flex flex-col gap-1 flex-1">
             <NavLink 
               to="/" 
+              aria-label="Navigate to Home page"
               className={({ isActive }) => 
                 `flex items-center gap-3 p-3 px-4 text-text-secondary rounded-xl transition-all duration-300 ease-in-out relative overflow-hidden group ${
                   isActive 
@@ -44,10 +45,10 @@ const Sidebar = () => {
                   <div className={`p-1.5 rounded-lg transition-all duration-300 ${
                     isActive ? 'bg-primary-500/20 text-primary-500' : 'group-hover:bg-primary-500/10 group-hover:text-primary-500'
                   }`}>
-                    <Home size={18} />
+                    <Home size={18} aria-hidden="true" />
                   </div>
                   <span className="font-medium">Home</span>
-                  {isActive && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse"></div>}
+                  {isActive && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse" aria-label="Current page"></div>}
                 </>
               )}
             </NavLink>
