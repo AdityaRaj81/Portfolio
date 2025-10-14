@@ -133,13 +133,19 @@ const Contact = () => {
     setFormStatus({ loading: true, success: false, error: '' });
 
     try {
-      const form = e.target;
-      const formDataToSend = new FormData(form);
+      // Use sanitized formData instead of raw form data for security
+      const formDataToSend = new URLSearchParams();
+      formDataToSend.append('form-name', 'contact');
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('subject', formData.subject);
+      formDataToSend.append('message', formData.message);
 
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formDataToSend).toString()
+        body: formDataToSend.toString()
       });
 
       if (response.ok) {
@@ -213,7 +219,7 @@ const Contact = () => {
     {
       icon: <Facebook size={24} />,
       label: 'Facebook',
-      link: 'https://facebook.com/aditya'
+      link: 'https://www.facebook.com/AdityaRaj812'
     },
     { 
       icon: <Twitter size={24} />,
