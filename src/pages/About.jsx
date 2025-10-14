@@ -30,7 +30,7 @@ const About = () => {
       { name: 'PostgreSQL', level: 82, icon: '🐘' },
       { name: 'MongoDB', level: 80, icon: '🍃' },
       { name: 'Docker', level: 78, icon: '🐳' },
-      { name: 'Git/GitHub', level: 95, icon: '�' }
+      { name: 'Git/GitHub', level: 95, icon: '🔧' }
     ]
   };
 
