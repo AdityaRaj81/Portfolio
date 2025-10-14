@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Briefcase, Mail, MapPin } from 'lucide-react';
 
@@ -10,14 +10,15 @@ const Home = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
   const navigate = useNavigate();
 
-  const lines = [
+  // Move lines outside component or use useMemo to prevent recreation
+  const lines = useMemo(() => [
     '> Initializing portfolio...',
     '> Loading developer profile...',
     '> Name: Aditya',
     '> Role: Software Engineer',
     '> Status: Ready to innovate',
     '> Welcome to my digital space!'
-  ];
+  ], []);
 
   useEffect(() => {
     if (currentLineIndex < lines.length) {
