@@ -237,8 +237,10 @@ const Projects = () => {
               <div className="relative overflow-hidden h-64 lg:h-full lg:col-span-2">
                 <img 
                   src={projects[0].image} 
-                  alt={projects[0].title} 
+                  alt={`${projects[0].title} - ${projects[0].subtitle}`} 
                   className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-bg-primary via-bg-primary/50 to-transparent"></div>
                 <div className="absolute top-4 left-4 flex gap-2">
@@ -327,8 +329,10 @@ const Projects = () => {
                 <div className="relative overflow-hidden h-48">
                   <img 
                     src={project.image} 
-                    alt={project.title} 
+                    alt={`${project.title} - ${project.subtitle}`} 
                     className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/30 to-transparent"></div>
                   <div className="absolute top-3 left-3">
@@ -403,8 +407,10 @@ const Projects = () => {
                 <div className="relative overflow-hidden h-40">
                   <img 
                     src={project.image} 
-                    alt={project.title} 
+                    alt={`${project.title} - ${project.subtitle}`} 
                     className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/40 to-transparent"></div>
                   <div className="absolute top-3 left-3">
@@ -469,8 +475,10 @@ const Projects = () => {
                   <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
                     <img 
                       src={project.image} 
-                      alt={project.title} 
+                      alt={`${project.title} icon`} 
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <div className="flex-1 min-w-0">
