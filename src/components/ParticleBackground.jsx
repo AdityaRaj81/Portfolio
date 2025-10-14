@@ -6,6 +6,13 @@ const ParticleBackground = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    // Check for reduced motion preference (ACCESSIBILITY)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (prefersReducedMotion.matches) {
+      console.log('Reduced motion preferred - skipping particle animation');
+      return; // Don't run animations if user prefers reduced motion
+    }
+
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
