@@ -13,10 +13,18 @@ import './App.css';
 function App() {
   return (
     <Router>
+      {/* Skip to content link for accessibility */}
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-6 focus:py-3 focus:bg-primary-500 focus:text-white focus:rounded-lg focus:shadow-glow-lg focus:font-medium"
+      >
+        Skip to main content
+      </a>
+      
       <div className="app">
         <ParticleBackground />
         <Sidebar />
-        <main className="main-content">
+        <main id="main-content" className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
