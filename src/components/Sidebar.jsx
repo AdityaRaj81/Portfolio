@@ -12,8 +12,10 @@ const Sidebar = () => {
             <div className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden shadow-lg ring-2 ring-primary-500/20">
               <img 
                 src="/Slidebar2.png" 
-                alt="Aditya Raj" 
+                alt="Aditya Raj - Full Stack Developer" 
                 className="w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
               />
             </div>
             <h2 className="text-2xl font-bold text-gradient mb-1">
