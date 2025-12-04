@@ -4,7 +4,7 @@ import { Download, Code, User, Eye, ExternalLink, Mail, Github, Trophy } from 'l
 const About = () => {
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [imageError, setImageError] = useState(false);
-  
+
   const skills = {
     'Programming & Languages': [
       { name: 'JavaScript', level: 95, icon: '🟨' },
@@ -82,15 +82,8 @@ const About = () => {
   ];
 
   const handleDownloadResume = () => {
-    // Create a link element for downloading the resume
-    const link = document.createElement('a');
-    link.href = '/Aditya_resume.pdf'; // Path to your resume in the public folder
-    link.download = 'Aditya_Raj_Resume.pdf'; // Name for the downloaded file
-    
-    // Append to body, click, and remove
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Open resume in a new tab for viewing
+    window.open('/Aditya_Raj_Resume.pdf', '_blank');
   };
 
   return (
@@ -111,14 +104,14 @@ const About = () => {
           <h1 className="text-3xl lg:text-5xl font-bold text-gradient mb-3 lg:mb-4">
             About Me
           </h1>
-          
+
           {/* Profile Card */}
           <div className="bg-bg-secondary/80 backdrop-blur-md rounded-2xl lg:rounded-3xl p-4 lg:p-6 border border-border-primary max-w-xs lg:max-w-md mx-auto hover:border-primary-500 transition-all duration-300 hover:shadow-glow group animate-float">
             <div className="aspect-square bg-bg-tertiary rounded-lg overflow-hidden border-2 border-accent-cyan/30 group-hover:border-accent-cyan transition-all duration-300 relative">
               {!imageError ? (
-                <img 
-                  src="/profile.png" 
-                  alt="Aditya Raj - Software Engineer" 
+                <img
+                  src="/profile.png"
+                  alt="Aditya Raj - Software Engineer"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   loading="lazy"
                   decoding="async"
@@ -144,12 +137,12 @@ const About = () => {
           </div>
 
           {/* Resume Download Button */}
-          <button 
+          <button
             className="inline-flex items-center gap-2 lg:gap-3 text-sm lg:text-base bg-gradient-primary hover:shadow-glow-lg px-6 py-3 rounded-xl font-medium text-white transition-all duration-300 hover:scale-105 hover:-translate-y-1"
             onClick={handleDownloadResume}
           >
-            <Download size={16} className="lg:w-5 lg:h-5" />
-            Download Resume
+            <ExternalLink size={16} className="lg:w-5 lg:h-5" />
+            View Resume
           </button>
         </div>
 
@@ -184,24 +177,24 @@ const About = () => {
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
             {Object.entries(skills).map(([category, categorySkills], categoryIndex) => (
-              <div 
-                key={category} 
+              <div
+                key={category}
                 className="bg-bg-secondary/80 backdrop-blur-md rounded-xl lg:rounded-2xl p-3 lg:p-4 border border-border-primary hover:border-primary-500 transition-all duration-300 hover:shadow-glow group"
                 style={{ animationDelay: `${categoryIndex * 0.1}s` }}
               >
                 <h3 className="text-lg lg:text-xl font-semibold mb-3 lg:mb-4 text-gradient flex items-center gap-2">
                   <span className="text-2xl group-hover:scale-110 transition-transform duration-300">
-                    {category === 'Programming & Languages' ? '⌨️' : 
-                     category === 'Frontend & UI' ? '🎨' : 
-                     category === 'Backend & APIs' ? '⚙️' :
-                     category === 'Database & DevOps' ? '🗄️' : '🛠️'}
+                    {category === 'Programming & Languages' ? '⌨️' :
+                      category === 'Frontend & UI' ? '🎨' :
+                        category === 'Backend & APIs' ? '⚙️' :
+                          category === 'Database & DevOps' ? '🗄️' : '🛠️'}
                   </span>
                   {category}
                 </h3>
                 <div className="space-y-2 lg:space-y-3">
                   {categorySkills.map((skill, index) => (
-                    <div 
-                      key={skill.name} 
+                    <div
+                      key={skill.name}
                       className="space-y-1 lg:space-y-2 group/skill cursor-pointer"
                       onMouseEnter={() => setHoveredSkill(`${category}-${skill.name}`)}
                       onMouseLeave={() => setHoveredSkill(null)}
@@ -220,9 +213,8 @@ const About = () => {
                       </div>
                       <div className="w-full bg-bg-primary/50 rounded-full h-1.5 lg:h-2 overflow-hidden">
                         <div
-                          className={`bg-gradient-primary h-1.5 lg:h-2 rounded-full transition-all duration-700 ease-out hover:shadow-glow ${
-                            hoveredSkill === `${category}-${skill.name}` ? 'animate-glow-pulse' : ''
-                          }`}
+                          className={`bg-gradient-primary h-1.5 lg:h-2 rounded-full transition-all duration-700 ease-out hover:shadow-glow ${hoveredSkill === `${category}-${skill.name}` ? 'animate-glow-pulse' : ''
+                            }`}
                           style={{ width: `${skill.level}%` }}
                         ></div>
                       </div>
@@ -254,7 +246,7 @@ const About = () => {
               >
                 {/* Background gradient overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${profile.color} opacity-0 transition-opacity duration-400 rounded-xl lg:rounded-2xl group-hover:opacity-10`}></div>
-                
+
                 <div className="relative z-10">
                   <div className="flex justify-between items-start mb-3">
                     <div className="text-4xl mb-2 group-hover:scale-110 transition-transform duration-300 relative">
@@ -265,7 +257,7 @@ const About = () => {
                       {profile.badge}
                     </div>
                   </div>
-                  
+
                   <div className="text-left space-y-2">
                     <div className="flex items-center justify-between">
                       <h3 className="text-lg lg:text-xl font-semibold text-text-primary group-hover:text-gradient transition-colors duration-300 flex items-center gap-2">
@@ -273,7 +265,7 @@ const About = () => {
                         <ExternalLink size={16} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </h3>
                     </div>
-                    
+
                     <div className="space-y-1">
                       <p className="text-text-muted font-fira text-xs lg:text-sm">@{profile.username}</p>
                       <div className="flex justify-between items-center">
@@ -298,18 +290,18 @@ const About = () => {
               Let's Build Something Amazing Together!
             </h3>
             <p className="text-text-muted mb-4 max-w-2xl mx-auto leading-relaxed">
-              I'm always excited to collaborate on innovative projects and explore new opportunities. 
+              I'm always excited to collaborate on innovative projects and explore new opportunities.
               Whether you have a project in mind or just want to connect, I'd love to hear from you.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <button 
+              <button
                 className="inline-flex items-center gap-2 bg-gradient-primary hover:shadow-glow-lg px-6 py-3 rounded-xl font-medium text-white transition-all duration-300 hover:scale-105 hover:-translate-y-1"
                 onClick={() => window.location.href = '/contact'}
               >
                 <Mail size={18} />
                 Get In Touch
               </button>
-              <button 
+              <button
                 className="inline-flex items-center gap-2 border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:-translate-y-1"
                 onClick={() => {
                   const link = document.createElement('a');
