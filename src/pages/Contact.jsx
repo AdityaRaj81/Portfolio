@@ -102,8 +102,8 @@ const Contact = () => {
     // Check honeypot for bot detection (CRITICAL SECURITY)
     const honeypot = e.target.elements['bot-field'];
     if (honeypot && honeypot.value !== '') {
-      console.log('Bot detected - submission blocked');
-      return; // Silent fail for bots
+      // Silent fail for bots - no logging to prevent info leakage
+      return;
     }
 
     // Rate limiting (CRITICAL SECURITY)
