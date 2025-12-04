@@ -9,7 +9,6 @@ const ParticleBackground = () => {
     // Check for reduced motion preference (ACCESSIBILITY)
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (prefersReducedMotion.matches) {
-      console.log('Reduced motion preferred - skipping particle animation');
       return; // Don't run animations if user prefers reduced motion
     }
 
@@ -47,7 +46,7 @@ const ParticleBackground = () => {
         const dx = mouseRef.current.x - this.x;
         const dy = mouseRef.current.y - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (distance < 150) {
           const force = (150 - distance) / 150;
           this.x -= (dx / distance) * force * 2;
@@ -71,7 +70,7 @@ const ParticleBackground = () => {
         const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
         gradient.addColorStop(0, `hsla(${this.hue}, 70%, 60%, ${this.opacity})`);
         gradient.addColorStop(1, `hsla(${this.hue}, 70%, 60%, 0)`);
-        
+
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -108,11 +107,11 @@ const ParticleBackground = () => {
 
       draw() {
         if (this.opacity <= 0) return;
-        
+
         const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
         gradient.addColorStop(0, `hsla(${this.hue}, 80%, 70%, ${this.opacity})`);
         gradient.addColorStop(1, `hsla(${this.hue}, 80%, 70%, 0)`);
-        
+
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -142,7 +141,7 @@ const ParticleBackground = () => {
     const handleMouseMove = (e) => {
       mouseRef.current.x = e.clientX;
       mouseRef.current.y = e.clientY;
-      
+
       // Create mouse trail particles
       if (Math.random() > 0.7) {
         mouseParticles.push(new MouseParticle(e.clientX, e.clientY));
@@ -166,7 +165,7 @@ const ParticleBackground = () => {
             );
             gradient.addColorStop(0, `hsla(${particles[i].hue}, 70%, 60%, ${opacity})`);
             gradient.addColorStop(1, `hsla(${particles[j].hue}, 70%, 60%, ${opacity})`);
-            
+
             ctx.strokeStyle = gradient;
             ctx.lineWidth = 0.8;
             ctx.beginPath();
@@ -249,16 +248,16 @@ const ParticleBackground = () => {
 
   return (
     <>
-      <canvas 
-        ref={canvasRef} 
+      <canvas
+        ref={canvasRef}
         className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
-        style={{ 
+        style={{
           background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.8) 50%, rgba(71, 85, 105, 0.9) 100%)'
         }}
       />
-      
+
       {/* Enhanced overlay pattern */}
-      <div 
+      <div
         className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-20"
         style={{
           backgroundImage: `radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
