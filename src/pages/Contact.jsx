@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mail, MapPin, Phone, Send, Download, Github, Linkedin, Twitter, Instagram, Facebook, MessageCircle, Users } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Download, ExternalLink, Github, Linkedin, Twitter, Instagram, Facebook, MessageCircle, Users } from 'lucide-react';
 import { sanitizeInput, sanitizeEmail, sanitizePhone } from '../utils/sanitize';
 
 const Contact = () => {
