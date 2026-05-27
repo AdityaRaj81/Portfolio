@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mail, MapPin, Phone, Send, Download, ExternalLink, Github, Linkedin, Twitter, Instagram, Facebook, MessageCircle, Users } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, ExternalLink, Github, Linkedin, Twitter, Instagram, Facebook, MessageCircle, Users } from 'lucide-react';
 import { sanitizeInput, sanitizeEmail, sanitizePhone } from '../utils/sanitize';
 
 const Contact = () => {
@@ -158,7 +158,7 @@ const Contact = () => {
       } else {
         throw new Error('Form submission failed');
       }
-    } catch (error) {
+    } catch {
       setFormStatus({
         loading: false,
         success: false,
@@ -178,21 +178,21 @@ const Contact = () => {
       label: 'Email',
       value: 'Connect2RajAditya@gmail.com',
       link: 'mailto:Connect2RajAditya@gmail.com',
-      gradient: 'from-primary-500 to-purple-600'
+      gradient: 'from-primary-500 to-accent-purple'
     },
     {
       icon: <Phone size={24} />,
       label: 'Phone',
       value: '+91 86510 65233',
       link: 'tel:+918651065233',
-      gradient: 'from-accent-cyan to-blue-500'
+      gradient: 'from-accent-cyan to-primary-500'
     },
     {
       icon: <MapPin size={24} />,
       label: 'Location',
       value: 'Patna, Bihar, India',
       link: null,
-      gradient: 'from-accent-green to-emerald-500'
+      gradient: 'from-accent-green to-green-600'
     }
   ];
 
@@ -490,7 +490,7 @@ const Contact = () => {
               {contactInfo.map((info, index) => (
                 <div
                   key={index}
-                  className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-primary-500/30 hover:border-accent-cyan/60 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,242,254,0.15)] group"
+                  className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-primary-500/30 hover:border-accent-cyan/60 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(6,182,212,0.2)] group"
                 >
                   <div className="flex items-center gap-3 lg:gap-4">
                     <div className={`w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl bg-gradient-to-br ${info.gradient} flex items-center justify-center text-text-white shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
@@ -529,7 +529,7 @@ const Contact = () => {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 lg:w-12 lg:h-12 bg-text-white/10 backdrop-blur-sm rounded-lg lg:rounded-xl flex items-center justify-center text-text-white hover:bg-primary-500 hover:scale-110 transition-all duration-300 hover:shadow-[0_5px_20px_rgba(102,126,234,0.4)] group"
+                    className="w-10 h-10 lg:w-12 lg:h-12 bg-text-white/10 backdrop-blur-sm rounded-lg lg:rounded-xl flex items-center justify-center text-text-white hover:bg-primary-500 hover:scale-110 transition-all duration-300 hover:shadow-[0_5px_20px_rgba(14,165,233,0.4)] group"
                     aria-label={social.label}
                   >
                     <div className="scale-75 lg:scale-100 group-hover:rotate-12 transition-transform duration-300">

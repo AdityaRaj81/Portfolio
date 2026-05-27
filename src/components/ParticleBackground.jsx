@@ -31,7 +31,7 @@ const ParticleBackground = () => {
         this.originalSize = this.size;
         this.pulseSpeed = Math.random() * 0.02 + 0.01;
         this.angle = Math.random() * Math.PI * 2;
-        this.hue = Math.random() * 60 + 200; // Blue to purple range
+        this.hue = Math.random() * 45 + 190; // Cyan to purple range
       }
 
       update() {
@@ -93,7 +93,7 @@ const ParticleBackground = () => {
         this.speedY = (Math.random() - 0.5) * 3;
         this.opacity = 1;
         this.decay = Math.random() * 0.02 + 0.02;
-        this.hue = Math.random() * 60 + 180; // Cyan to blue range
+        this.hue = Math.random() * 45 + 185; // Cyan to sky-blue range
       }
 
       update() {
@@ -185,7 +185,7 @@ const ParticleBackground = () => {
 
         if (distance < 200) {
           const opacity = 0.3 * (1 - distance / 200);
-          ctx.strokeStyle = `rgba(6, 182, 212, ${opacity})`;
+          ctx.strokeStyle = `rgba(14, 165, 233, ${opacity})`;
           ctx.lineWidth = 1.5;
           ctx.beginPath();
           ctx.moveTo(particle.x, particle.y);
@@ -202,7 +202,7 @@ const ParticleBackground = () => {
       }
 
       // Create fade effect instead of hard clear
-      ctx.fillStyle = 'rgba(30, 41, 59, 0.03)';
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.03)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       time++;
@@ -252,7 +252,7 @@ const ParticleBackground = () => {
         ref={canvasRef}
         className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
         style={{
-          background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.8) 50%, rgba(71, 85, 105, 0.9) 100%)'
+          background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 50%, rgba(51, 65, 85, 0.9) 100%)'
         }}
       />
 
@@ -260,9 +260,10 @@ const ParticleBackground = () => {
       <div
         className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-20"
         style={{
-          backgroundImage: `radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-                           radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-                           radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)`
+          backgroundImage: `radial-gradient(circle at 20% 80%, rgba(14, 165, 233, 0.12) 0%, transparent 50%),
+                           radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                           radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                           radial-gradient(circle at 70% 65%, rgba(6, 182, 212, 0.08) 0%, transparent 50%)`
         }}
       />
     </>

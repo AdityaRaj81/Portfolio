@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import ParticleBackground from './components/ParticleBackground';
+import ChatbotWidget from './components/ChatbotWidget';
 import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
@@ -14,16 +15,17 @@ function App() {
   return (
     <Router>
       {/* Skip to content link for accessibility */}
-      <a 
-        href="#main-content" 
+      <a
+        href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-6 focus:py-3 focus:bg-primary-500 focus:text-white focus:rounded-lg focus:shadow-glow-lg focus:font-medium"
       >
         Skip to main content
       </a>
-      
+
       <div className="app">
         <ParticleBackground />
         <Sidebar />
+        <ChatbotWidget />
         <main id="main-content" className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />

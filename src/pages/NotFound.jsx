@@ -53,38 +53,38 @@ const NotFound = () => {
   }, []);
 
   const navCards = [
-    { 
-      name: 'Home', 
-      icon: Home, 
-      path: '/', 
+    {
+      name: 'Home',
+      icon: Home,
+      path: '/',
       color: 'cyan',
       desc: 'Start fresh'
     },
-    { 
-      name: 'Projects', 
-      icon: Rocket, 
-      path: '/projects', 
+    {
+      name: 'Projects',
+      icon: Rocket,
+      path: '/projects',
       color: 'green',
       desc: 'See my work'
     },
-    { 
-      name: 'Journey', 
-      icon: Map, 
-      path: '/journey', 
+    {
+      name: 'Journey',
+      icon: Map,
+      path: '/journey',
       color: 'purple',
       desc: 'My story'
     },
-    { 
-      name: 'Contact', 
-      icon: Coffee, 
-      path: '/contact', 
+    {
+      name: 'Contact',
+      icon: Coffee,
+      path: '/contact',
       color: 'orange',
       desc: 'Let\'s talk'
     }
   ];
 
   return (
-    <div 
+    <div
       className="min-h-screen flex items-center justify-center p-4 overflow-hidden"
       onMouseMove={handleMouseMove}
     >
@@ -99,15 +99,15 @@ const NotFound = () => {
 
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div 
+        <div
           className="absolute top-20 left-20 w-32 h-32 bg-accent-cyan/10 rounded-full blur-3xl animate-pulse"
           style={{ transform: `translate(${mousePos.x}px, ${mousePos.y}px)` }}
         ></div>
-        <div 
+        <div
           className="absolute bottom-20 right-20 w-40 h-40 bg-accent-green/10 rounded-full blur-3xl animate-pulse delay-150"
           style={{ transform: `translate(${-mousePos.x}px, ${-mousePos.y}px)` }}
         ></div>
-        <div 
+        <div
           className="absolute top-1/2 left-1/3 w-24 h-24 bg-primary-500/10 rounded-full blur-2xl animate-pulse delay-300"
           style={{ transform: `translate(${mousePos.x * 0.5}px, ${mousePos.y * 0.5}px)` }}
         ></div>
@@ -119,32 +119,32 @@ const NotFound = () => {
           <div className="relative mb-8">
             <div className="relative inline-block">
               {/* Animated icons floating around */}
-              <Bug 
-                className="absolute -top-8 -left-8 text-red-400 animate-bounce"
+              <Bug
+                className="absolute -top-8 -left-8 text-accent-pink animate-bounce"
                 size={32}
                 style={{ animationDelay: '0s' }}
               />
-              <Zap 
-                className="absolute -top-8 -right-8 text-yellow-400 animate-bounce"
+              <Zap
+                className="absolute -top-8 -right-8 text-accent-purple animate-bounce"
                 size={32}
                 style={{ animationDelay: '0.2s' }}
               />
-              <Terminal 
+              <Terminal
                 className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-accent-cyan animate-bounce"
                 size={32}
                 style={{ animationDelay: '0.4s' }}
               />
 
-              <div 
+              <div
                 className="relative"
                 style={{ transform: `translateY(${floatY}px)`, transition: 'transform 0.1s ease-out' }}
               >
                 <h1 className="text-[100px] lg:text-[160px] font-bold leading-none relative">
                   {/* Glowing background effect */}
                   <div className="absolute inset-0 blur-3xl opacity-40 bg-gradient-to-r from-accent-cyan via-primary-500 to-accent-cyan animate-pulse"></div>
-                  
+
                   {/* Main 404 text */}
-                  <span className="relative bg-gradient-primary bg-clip-text text-transparent drop-shadow-[0_0_50px_rgba(6,182,212,0.5)]">
+                  <span className="relative bg-gradient-primary bg-clip-text text-transparent drop-shadow-[0_0_50px_rgba(14,165,233,0.5)]">
                     404
                   </span>
                 </h1>
@@ -160,7 +160,7 @@ const NotFound = () => {
               <span className="inline-block animate-bounce-slow text-accent-cyan" style={{ animationDelay: '0.2s' }}> Found!</span>
             </h2>
             <p className="text-text-muted text-lg max-w-xl mx-auto">
-              Looks like this page took a wrong turn and got lost in the digital world. 
+              Looks like this page took a wrong turn and got lost in the digital world.
               <br />
               <span className="text-primary-400 font-mono">// No worries, let's get you back on track 🚀</span>
             </p>
@@ -178,7 +178,7 @@ const NotFound = () => {
                 </div>
                 <span className="text-text-muted text-sm font-mono ml-2">terminal — bash</span>
               </div>
-              
+
               {/* Terminal Content */}
               <div className="p-6 font-mono text-left">
                 <div className="text-accent-green text-sm">
@@ -199,30 +199,27 @@ const NotFound = () => {
                   <button
                     key={card.path}
                     onClick={() => navigate(card.path)}
-                    className={`group relative bg-bg-secondary/60 backdrop-blur-[10px] rounded-2xl border p-6 transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_60px_rgba(0,242,254,0.2)] ${
-                      card.color === 'cyan' ? 'border-accent-cyan/30 hover:border-accent-cyan/60' :
-                      card.color === 'green' ? 'border-accent-green/30 hover:border-accent-green/60' :
-                      card.color === 'purple' ? 'border-purple-500/30 hover:border-purple-500/60' :
-                      'border-orange-500/30 hover:border-orange-500/60'
-                    }`}
+                    className={`group relative bg-bg-secondary/60 backdrop-blur-[10px] rounded-2xl border p-6 transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_60px_rgba(0,242,254,0.2)] ${card.color === 'cyan' ? 'border-accent-cyan/30 hover:border-accent-cyan/60' :
+                        card.color === 'green' ? 'border-accent-green/30 hover:border-accent-green/60' :
+                          card.color === 'purple' ? 'border-accent-purple/30 hover:border-accent-purple/60' :
+                            'border-accent-orange/30 hover:border-accent-orange/60'
+                      }`}
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {/* Glow effect */}
-                    <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl ${
-                      card.color === 'cyan' ? 'bg-accent-cyan/20' :
-                      card.color === 'green' ? 'bg-accent-green/20' :
-                      card.color === 'purple' ? 'bg-purple-500/20' :
-                      'bg-orange-500/20'
-                    }`}></div>
+                    <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl ${card.color === 'cyan' ? 'bg-accent-cyan/20' :
+                        card.color === 'green' ? 'bg-accent-green/20' :
+                          card.color === 'purple' ? 'bg-accent-purple/20' :
+                            'bg-accent-orange/20'
+                      }`}></div>
 
                     <div className="relative space-y-3">
-                      <Icon 
-                        className={`mx-auto transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12 ${
-                          card.color === 'cyan' ? 'text-accent-cyan' :
-                          card.color === 'green' ? 'text-accent-green' :
-                          card.color === 'purple' ? 'text-purple-400' :
-                          'text-orange-400'
-                        }`}
+                      <Icon
+                        className={`mx-auto transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12 ${card.color === 'cyan' ? 'text-accent-cyan' :
+                            card.color === 'green' ? 'text-accent-green' :
+                              card.color === 'purple' ? 'text-accent-purple' :
+                                'text-accent-orange'
+                          }`}
                         size={32}
                       />
                       <div>
@@ -240,8 +237,8 @@ const NotFound = () => {
           <div className="pt-6">
             <div className="inline-block bg-bg-secondary/40 backdrop-blur-[10px] rounded-xl border border-primary-500/20 px-6 py-3">
               <p className="text-text-muted text-sm font-mono">
-                <span className="text-red-400">Error:</span> 
-                <span className="text-yellow-400"> ENOENT</span> - 
+                <span className="text-red-400">Error:</span>
+                <span className="text-accent-purple"> ENOENT</span> -
                 <span className="text-accent-cyan"> No such route found</span> 🚀
               </p>
             </div>

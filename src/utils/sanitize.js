@@ -10,15 +10,14 @@
  */
 export const sanitizeInput = (input) => {
   if (!input) return '';
-  
+
   // Remove potentially dangerous characters and patterns
   return input
     .replace(/[<>]/g, '') // Remove < and > to prevent HTML injection
     .replace(/javascript:/gi, '') // Remove javascript: protocol
     .replace(/on\w+\s*=/gi, '') // Remove event handlers like onclick=
     .replace(/&lt;/g, '') // Remove encoded <
-    .replace(/&gt;/g, '') // Remove encoded >
-    .trim();
+    .replace(/&gt;/g, ''); // Remove encoded >
 };
 
 /**
@@ -49,7 +48,7 @@ export const sanitizePhone = (phone) => {
  */
 export const sanitizeUrl = (url) => {
   if (!url) return null;
-  
+
   try {
     const parsed = new URL(url);
     // Only allow http and https protocols

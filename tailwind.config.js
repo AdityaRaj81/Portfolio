@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+// TECH INNOVATOR THEME - Sky Blue + Purple + Pink
 export default {
   content: [
     "./index.html",
@@ -11,74 +12,85 @@ export default {
         'fira': ['Fira Code', 'monospace'],
       },
       colors: {
+        // PRIMARY - Sky Blue (Tech Innovator Theme)
         primary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#0ea5e9',  // Main Brand - Sky Blue
+          600: '#0284c7',
+          700: '#0369a1',
+          800: '#075985',
+          900: '#0c4a6e',
         },
+        // SECONDARY - Purple
         secondary: {
-          100: '#fef3c7',
-          200: '#fde68a',
-          300: '#fcd34d',
-          400: '#fbbf24',
-          500: '#f59e0b',
-          600: '#d97706',
-          700: '#b45309',
-          800: '#92400e',
-          900: '#78350f',
+          50: '#faf5ff',
+          100: '#f3e8ff',
+          200: '#e9d5ff',
+          300: '#d8b4fe',
+          400: '#c084fc',
+          500: '#a855f7',  // Vibrant Purple
+          600: '#9333ea',
+          700: '#7e22ce',
+          800: '#6b21a8',
+          900: '#581c87',
         },
+        // ACCENT COLORS
         accent: {
-          cyan: '#06b6d4',
-          green: '#10b981',
-          purple: '#8b5cf6',
-          pink: '#ec4899',
-          orange: '#f97316',
+          cyan: '#06b6d4',      // Electric Cyan
+          purple: '#a855f7',    // Vibrant Purple
+          pink: '#ec4899',      // Hot Pink
+          green: '#10b981',     // Success Green
+          orange: '#f97316',    // Energy Orange
+          blue: '#0ea5e9',      // Sky Blue
         },
+        // BACKGROUND COLORS - Darker for better contrast
         bg: {
-          primary: '#1e293b',    // Slate 800 - main background
-          secondary: '#334155',  // Slate 700 - card backgrounds
-          tertiary: '#475569',   // Slate 600 - elevated elements
-          light: '#f8fafc',      // Light mode background
-          card: '#2d3748',       // Card background with slight warmth
+          primary: '#0f172a',    // Deep Navy (darker)
+          secondary: '#1e293b',  // Slate
+          tertiary: '#334155',   // Light Slate
+          card: '#1e293b',       // Card Background
+          light: '#f8fafc',      // Light mode
         },
-        // Update text colors to follow Tailwind convention
+        // TEXT COLORS
         'text-primary': '#f1f5f9',
         'text-secondary': '#cbd5e1',
         'text-muted': '#94a3b8',
-        'text-accent': '#06b6d4',
-        'text-dark': '#1e293b',
-        // Border colors
-        'border-primary': '#475569',
-        'border-secondary': '#64748b',
-        'border-accent': '#06b6d4',
+        'text-accent': '#38bdf8',  // Bright Sky Blue
+        'text-dark': '#0f172a',
+        'text-white': '#ffffff',
+        // BORDER COLORS
+        'border-primary': '#334155',
+        'border-secondary': '#475569',
+        'border-accent': '#0ea5e9',  // Sky Blue
       },
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)',
-        'gradient-secondary': 'linear-gradient(135deg, #f59e0b 0%, #f97316 100%)',
-        'gradient-accent': 'linear-gradient(135deg, #06b6d4 0%, #10b981 100%)',
+        // TECH INNOVATOR GRADIENTS
+        'gradient-primary': 'linear-gradient(135deg, #0ea5e9 0%, #a855f7 50%, #ec4899 100%)',
+        'gradient-secondary': 'linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%)',
+        'gradient-accent': 'linear-gradient(135deg, #a855f7 0%, #ec4899 100%)',
         'gradient-success': 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-        'gradient-warm': 'linear-gradient(135deg, #f59e0b 0%, #ec4899 100%)',
-        'gradient-cool': 'linear-gradient(135deg, #06b6d4 0%, #6366f1 100%)',
-        'gradient-mesh': 'radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.1) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.1) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%)',
-        'radial-gradient': 'radial-gradient(ellipse at center, rgba(30, 41, 59, 0.8) 0%, rgba(30, 41, 59, 0.95) 100%)',
+        'gradient-button': 'linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%)',
+        'gradient-hero': 'linear-gradient(135deg, #0ea5e9 0%, #a855f7 50%, #ec4899 100%)',
+        'gradient-card': 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
+        'gradient-mesh': 'radial-gradient(at 20% 80%, rgba(14, 165, 233, 0.15) 0px, transparent 50%), radial-gradient(at 80% 20%, rgba(168, 85, 247, 0.15) 0px, transparent 50%), radial-gradient(at 40% 40%, rgba(6, 182, 212, 0.12) 0px, transparent 50%), radial-gradient(at 60% 60%, rgba(236, 72, 153, 0.12) 0px, transparent 50%)',
+        'radial-gradient': 'radial-gradient(ellipse at center, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%)',
       },
       boxShadow: {
-        'glow': '0 0 20px rgba(99, 102, 241, 0.3)',
-        'glow-lg': '0 8px 25px rgba(99, 102, 241, 0.4)',
-        'glow-cyan': '0 0 20px rgba(6, 182, 212, 0.3)',
+        // TECH INNOVATOR GLOWS - Sky Blue based
+        'glow': '0 0 20px rgba(14, 165, 233, 0.4)',
+        'glow-lg': '0 8px 25px rgba(14, 165, 233, 0.5)',
+        'glow-cyan': '0 0 20px rgba(6, 182, 212, 0.4)',
+        'glow-purple': '0 0 20px rgba(168, 85, 247, 0.4)',
+        'glow-pink': '0 0 20px rgba(236, 72, 153, 0.4)',
         'glow-green': '0 0 20px rgba(16, 185, 129, 0.3)',
-        'glow-pink': '0 0 20px rgba(236, 72, 153, 0.3)',
-        'button': '0 4px 15px rgba(99, 102, 241, 0.3)',
-        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-        'card-hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-        'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+        'button': '0 4px 15px rgba(14, 165, 233, 0.4)',
+        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1)',
+        'card-hover': '0 10px 30px -3px rgba(14, 165, 233, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
+        'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.1)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
@@ -92,8 +104,8 @@ export default {
           '50%': { transform: 'translateY(-10px)' },
         },
         glow: {
-          'from': { boxShadow: '0 0 20px rgba(102, 126, 234, 0.3)' },
-          'to': { boxShadow: '0 0 30px rgba(102, 126, 234, 0.6)' },
+          'from': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.3)' },
+          'to': { boxShadow: '0 0 30px rgba(14, 165, 233, 0.6)' },
         },
         fadeInUp: {
           'from': { opacity: '0', transform: 'translateY(30px)' },

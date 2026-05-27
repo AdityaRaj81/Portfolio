@@ -197,12 +197,12 @@ const Projects = () => {
               Building Solutions That Matter
             </h1>
             <p className="text-text-muted text-base lg:text-xl max-w-3xl mx-auto leading-relaxed">
-              I specialize in creating innovative web applications that solve real-world problems. 
-              From AI-powered financial platforms serving 50,000+ users to healthcare management systems 
+              I specialize in creating innovative web applications that solve real-world problems.
+              From AI-powered financial platforms serving 50,000+ users to healthcare management systems
               trusted by 100+ medical shops - I transform ideas into impactful digital experiences.
             </p>
           </div>
-          
+
           {/* Stats */}
           <div className="flex justify-center items-center gap-8 lg:gap-12 pt-4">
             <div className="text-center">
@@ -230,14 +230,14 @@ const Projects = () => {
               Featured Project
             </h2>
           </div>
-          
+
           <div className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-2xl overflow-hidden border border-accent-cyan/40 hover:border-accent-cyan/60 transition-all duration-500 group">
             <div className="grid grid-cols-1 lg:grid-cols-5">
               {/* Featured Project Image */}
               <div className="relative overflow-hidden h-64 lg:h-full lg:col-span-2">
-                <img 
-                  src={projects[0].image} 
-                  alt={`${projects[0].title} - ${projects[0].subtitle}`} 
+                <img
+                  src={projects[0].image}
+                  alt={`${projects[0].title} - ${projects[0].subtitle}`}
                   className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
                   decoding="async"
@@ -258,7 +258,7 @@ const Projects = () => {
                   </h3>
                   <p className="text-primary-400 font-medium mt-1">{projects[0].subtitle}</p>
                 </div>
-                
+
                 <p className="text-text-muted leading-relaxed text-sm">
                   {projects[0].description}
                 </p>
@@ -266,8 +266,8 @@ const Projects = () => {
                 {/* Technologies */}
                 <div className="flex flex-wrap gap-2">
                   {projects[0].technologies.map((tech, index) => (
-                    <span 
-                      key={index} 
+                    <span
+                      key={index}
                       className="px-3 py-1 bg-primary-500/20 text-primary-400 rounded-lg text-xs font-medium border border-primary-500/30"
                     >
                       {tech}
@@ -287,19 +287,19 @@ const Projects = () => {
 
                 {/* Action Buttons */}
                 <div className="flex gap-3">
-                  <a 
-                    href={projects[0].demo} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  <a
+                    href={projects[0].demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 btn-primary text-sm hover:scale-105 transition-transform duration-300"
                   >
                     <ExternalLink size={16} />
                     Visit Live Site
                   </a>
-                  <a 
-                    href={projects[0].github} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  <a
+                    href={projects[0].github}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2 bg-text-white/10 backdrop-blur-sm text-text-white rounded-xl border border-primary-500/30 hover:bg-primary-500/20 transition-all duration-300 text-sm"
                   >
                     <Github size={16} />
@@ -317,7 +317,7 @@ const Projects = () => {
             <h2 className="text-xl lg:text-2xl font-bold text-text-white">Production Projects</h2>
             <p className="text-text-muted text-sm mt-1">Live applications serving real users</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.slice(1, 3).map((project) => (
               <div
@@ -327,29 +327,27 @@ const Projects = () => {
                 onMouseLeave={() => setHoveredProject(null)}
               >
                 <div className="relative overflow-hidden h-48">
-                  <img 
-                    src={project.image} 
-                    alt={`${project.title} - ${project.subtitle}`} 
+                  <img
+                    src={project.image}
+                    alt={`${project.title} - ${project.subtitle}`}
                     className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
                     decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/30 to-transparent"></div>
                   <div className="absolute top-3 left-3">
-                    <span className={`backdrop-blur-sm border px-3 py-1 rounded-full text-xs font-medium ${
-                      project.highlight === 'Popular' ? 'bg-accent-green/20 border-accent-green/30 text-accent-green' :
+                    <span className={`backdrop-blur-sm border px-3 py-1 rounded-full text-xs font-medium ${project.highlight === 'Popular' ? 'bg-accent-green/20 border-accent-green/30 text-accent-green' :
                       'bg-primary-500/20 border-primary-500/30 text-primary-400'
-                    }`}>
+                      }`}>
                       {project.highlight}
                     </span>
                   </div>
-                  <div className={`absolute bottom-3 right-3 flex gap-2 transition-opacity duration-300 ${
-                    hoveredProject === project.id ? 'opacity-100' : 'opacity-0'
-                  }`}>
-                    <a 
-                      href={project.demo} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                  <div className={`absolute bottom-3 right-3 flex gap-2 transition-opacity duration-300 ${hoveredProject === project.id ? 'opacity-100' : 'opacity-0'
+                    }`}>
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="bg-accent-cyan/90 backdrop-blur-sm p-2 rounded-full text-bg-primary hover:scale-110 transition-all duration-300"
                     >
                       <ExternalLink size={16} />
@@ -370,15 +368,15 @@ const Projects = () => {
                     </div>
                     <p className="text-primary-400 font-medium text-sm mt-1">{project.subtitle}</p>
                   </div>
-                  
+
                   <p className="text-text-muted text-sm leading-relaxed">
                     {project.description.substring(0, 120)}...
                   </p>
 
                   <div className="flex flex-wrap gap-1.5">
                     {project.technologies.slice(0, 4).map((tech, index) => (
-                      <span 
-                        key={index} 
+                      <span
+                        key={index}
                         className="px-2 py-1 bg-primary-500/20 text-primary-400 rounded-md text-xs font-medium"
                       >
                         {tech}
@@ -397,27 +395,26 @@ const Projects = () => {
             <h2 className="text-xl lg:text-2xl font-bold text-text-white">Learning Journey</h2>
             <p className="text-text-muted text-sm mt-1">Challenge-based skill development</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.slice(3, 5).map((project) => (
               <div
                 key={project.id}
-                className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-2xl overflow-hidden border border-primary-500/30 hover:border-yellow-500/50 transition-all duration-500 group"
+                className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-2xl overflow-hidden border border-primary-500/30 hover:border-accent-pink/50 transition-all duration-500 group"
               >
                 <div className="relative overflow-hidden h-40">
-                  <img 
-                    src={project.image} 
-                    alt={`${project.title} - ${project.subtitle}`} 
+                  <img
+                    src={project.image}
+                    alt={`${project.title} - ${project.subtitle}`}
                     className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
                     decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/40 to-transparent"></div>
                   <div className="absolute top-3 left-3">
-                    <span className={`backdrop-blur-sm border px-3 py-1 rounded-full text-xs font-medium ${
-                      project.highlight === 'Learning Journey' ? 'bg-yellow-500/20 border-yellow-500/30 text-yellow-400' :
-                      'bg-purple-500/20 border-purple-500/30 text-purple-400'
-                    }`}>
+                    <span className={`backdrop-blur-sm border px-3 py-1 rounded-full text-xs font-medium ${project.highlight === 'Learning Journey' ? 'bg-accent-pink/20 border-accent-pink/30 text-accent-pink' :
+                      'bg-accent-purple/20 border-accent-purple/30 text-accent-purple'
+                      }`}>
                       {project.highlight}
                     </span>
                   </div>
@@ -428,7 +425,7 @@ const Projects = () => {
                     <h3 className="text-lg font-bold text-text-white">{project.title}</h3>
                     <p className="text-primary-400 text-sm mt-1">{project.subtitle}</p>
                   </div>
-                  
+
                   <p className="text-text-muted text-sm">
                     {project.description.substring(0, 100)}...
                   </p>
@@ -442,10 +439,10 @@ const Projects = () => {
                       ))}
                     </div>
                     {project.demo !== '#' && (
-                      <a 
-                        href={project.demo} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-accent-cyan hover:text-accent-cyan/80 transition-colors"
                       >
                         <ExternalLink size={18} />
@@ -464,18 +461,18 @@ const Projects = () => {
             <h2 className="text-xl lg:text-2xl font-bold text-text-white">Simple Projects</h2>
             <p className="text-text-muted text-sm mt-1">Building blocks and fundamentals</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {projects.slice(5, 8).map((project) => (
               <div
                 key={project.id}
-                className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-xl border border-primary-500/30 hover:border-blue-500/50 transition-all duration-300 p-4 group"
+                className="bg-bg-secondary/60 backdrop-blur-[10px] rounded-xl border border-primary-500/30 hover:border-accent-cyan/50 transition-all duration-300 p-4 group"
               >
                 <div className="flex items-start gap-3">
                   <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                    <img 
-                      src={project.image} 
-                      alt={`${project.title} icon`} 
+                    <img
+                      src={project.image}
+                      alt={`${project.title} icon`}
                       className="w-full h-full object-cover"
                       loading="lazy"
                       decoding="async"
@@ -504,37 +501,37 @@ const Projects = () => {
             <h2 className="text-xl lg:text-2xl font-bold text-text-white">Future Roadmap</h2>
             <p className="text-text-muted text-sm mt-1">Upcoming projects and ideas</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {projects.slice(8, 11).map((project) => (
               <div
                 key={project.id}
-                className="bg-gradient-to-br from-bg-secondary/60 to-bg-secondary/30 backdrop-blur-[10px] rounded-2xl border border-orange-500/30 hover:border-orange-500/50 transition-all duration-300 p-5 group relative overflow-hidden"
+                className="bg-gradient-to-br from-bg-secondary/60 to-bg-secondary/30 backdrop-blur-[10px] rounded-2xl border border-accent-orange/30 hover:border-accent-orange/50 transition-all duration-300 p-5 group relative overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/10 rounded-full blur-2xl"></div>
-                
+                <div className="absolute top-0 right-0 w-24 h-24 bg-accent-orange/10 rounded-full blur-2xl"></div>
+
                 <div className="relative space-y-3">
                   <div className="flex items-start justify-between">
                     <div>
-                      <span className="bg-orange-500/20 border border-orange-500/30 text-orange-400 px-2 py-1 rounded-md text-xs font-medium">
+                      <span className="bg-accent-orange/20 border border-accent-orange/30 text-accent-orange px-2 py-1 rounded-md text-xs font-medium">
                         {project.highlight}
                       </span>
                     </div>
-                    <Calendar size={18} className="text-orange-400" />
+                    <Calendar size={18} className="text-accent-orange" />
                   </div>
-                  
+
                   <div>
                     <h3 className="text-lg font-bold text-text-white">{project.title}</h3>
                     <p className="text-primary-400 text-sm mt-1">{project.subtitle}</p>
                   </div>
-                  
+
                   <p className="text-text-muted text-xs leading-relaxed">
                     {project.description.substring(0, 90)}...
                   </p>
 
                   <div className="flex flex-wrap gap-1">
                     {project.technologies.slice(0, 3).map((tech, index) => (
-                      <span key={index} className="px-2 py-0.5 bg-orange-500/10 text-orange-400 rounded text-[10px] border border-orange-500/20">
+                      <span key={index} className="px-2 py-0.5 bg-accent-orange/10 text-accent-orange rounded text-[10px] border border-accent-orange/20">
                         {tech}
                       </span>
                     ))}
@@ -548,11 +545,11 @@ const Projects = () => {
         {/* GitHub Profile Link */}
         <div className="max-w-6xl mx-auto">
           <div className="text-center">
-            <a 
-              href="https://github.com/AdityaRaj81?tab=repositories" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="inline-flex items-center gap-3 px-8 py-4 bg-bg-secondary/60 backdrop-blur-[10px] rounded-2xl border border-primary-500/30 text-text-white hover:border-accent-cyan/50 hover:shadow-[0_10px_30px_rgba(0,242,254,0.2)] transition-all duration-300 group"
+            <a
+              href="https://github.com/AdityaRaj81?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-bg-secondary/60 backdrop-blur-[10px] rounded-2xl border border-primary-500/30 text-text-white hover:border-accent-cyan/50 hover:shadow-[0_10px_30px_rgba(6,182,212,0.2)] transition-all duration-300 group"
             >
               <Github size={22} className="group-hover:rotate-12 transition-transform duration-300" />
               <span className="font-semibold text-lg">View All Projects on GitHub</span>

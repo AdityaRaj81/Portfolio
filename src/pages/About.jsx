@@ -43,7 +43,7 @@ const About = () => {
       rating: '1850+',
       link: 'https://leetcode.com/u/AdityaRaj81/',
       icon: '💻',
-      color: 'from-orange-500 to-yellow-500',
+      color: 'from-accent-orange to-accent-pink',
       badge: 'Expert'
     },
     {
@@ -54,7 +54,7 @@ const About = () => {
       rating: '2100+',
       link: 'https://www.hackerrank.com/profile/AdityaRaj81',
       icon: '⭐',
-      color: 'from-emerald-500 to-green-600',
+      color: 'from-accent-green to-green-600',
       badge: '5★'
     },
     {
@@ -65,7 +65,7 @@ const About = () => {
       rating: '1950+',
       link: 'https://www.codechef.com/users/adityaraj81',
       icon: '🍳',
-      color: 'from-amber-500 to-orange-600',
+      color: 'from-primary-500 to-accent-purple',
       badge: '4★'
     },
     // {
